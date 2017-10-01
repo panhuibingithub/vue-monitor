@@ -1,4 +1,4 @@
-import dashboard from "../pages/dashboard.vue";
+import monitor from "../pages/monitor/index.vue";
 import NotFoundView from "../components/404.vue";
 import menuList from "../pages/sys/menu.vue";
 import role from "../pages/sys/role.vue";
@@ -8,6 +8,9 @@ import app from "../App.vue";
 import sysUser from "../pages/sys/user.vue";
 import userAdd from "../pages/sys/userAdd.vue";
 import resetPwd from "../pages/resetPwd.vue";
+
+import device from "../pages/device/device.vue";
+import deviceAdd from "../pages/device/deviceAdd.vue";
 // Routes
 const routes = [
 	{ path: '/login', component: login },
@@ -23,7 +26,11 @@ const routes = [
 		component: app,
 		children: [
 			{ path: '/resetPwd', component: resetPwd },
-			{ path: '/index', component: dashboard },
+			{ path: '/index', component: monitor },
+			
+			{ path: '/device/device', component: device },
+			{ path: '/device/deviceAdd', component: deviceAdd },
+			
 			{ path: '/sys/menuList', component: menuList },
 			{ path: '/sys/roleList', component: role },
 			{ path: '/sys/userList', component: sysUser },

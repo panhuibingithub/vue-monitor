@@ -1,5 +1,5 @@
-export const CONTEXT = './vue-admin2/dist';
-// export const CONTEXT = './Vue-Admin';
+export const CONTEXT = '';
+//export const CONTEXT = './vue-monitor';
 
 export const LOGIN = CONTEXT + '/login';
 export const LOGOUT = CONTEXT + '/logout';

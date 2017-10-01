@@ -27,6 +27,38 @@
 			"usable": "1",
 			"remarks": "",
 			"children": []
+		},{
+			"id": 168,
+			"parentId": null,
+			"sort": 0,
+			"name": "摄像头监控",
+			"code": "/device",
+			"type": 1,
+			"usable": "1",
+			"remarks": "",
+			"children": [
+				{
+					"id": 99,
+					"parentId": 82,
+					"sort": 0,
+					"name": "设备查询",
+					"code": "/device/device",
+					"type": 3,
+					"usable": "1",
+					"remarks": "",
+					"children": []
+				},{
+					"id": 99,
+					"parentId": 82,
+					"sort": 0,
+					"name": "设备新增",
+					"code": "/device/deviceAdd",
+					"type": 3,
+					"usable": "1",
+					"remarks": "",
+					"children": []
+				}
+			]
 		}, {
 			"id": 69,
 			"parentId": null,
@@ -444,7 +476,26 @@
 			"icon": "fa fa-dashboard",
 			"children": [],
 			"isShow": "1"
-		}, {
+		},{
+			"id": 168,
+			"parentId": null,
+			"sort": 6,
+			"name": "摄像管理",
+			"href": "/device",
+			"icon": "el-icon-setting",
+			"children": [
+				{
+					"id": 108,
+					"parentId": 6,
+					"sort": 0,
+					"name": " 摄像头查询",
+					"href": "/device/device",
+					"icon": "fa fa-database",
+					"children": [],
+					"isShow": "1"
+				}
+			]
+		},{
 			"id": 6,
 			"parentId": null,
 			"sort": 6,

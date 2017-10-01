@@ -9,7 +9,7 @@
             <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut" appear>
               <router-view></router-view>
             </transition>
-            <imp-footer></imp-footer>
+            <!--<imp-footer></imp-footer>-->
           </section>
         </el-scrollbar>
       </div>
@@ -156,5 +156,4 @@
   .content-wrapper.mobileSide{
     margin-left: 0px;
   }
-
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <el-row>
-    <el-col :span="12" :offset="6">
+    <el-col :span="20" :offset="2">
       <div class="login">
         <div class="login-form">
           <div class="card-block">

@@ -21,8 +21,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+       player:path.join(__dirname,"../static/lib/paplayer.min.js"),
+       playerCss:path.join(__dirname,"../static/lib/paplayer.min.css"),
     }
   },
   module: {
