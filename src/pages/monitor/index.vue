@@ -3,7 +3,7 @@
 		<ul class="camera-list">
 			<li class="tit">摄像头列表</li>
 			<li v-for="(item,index) in list" @click="play(item)" >
-				{{item.name}}
+				{{item.device_name}}
 			</li>
 		</ul>
 		<div class="media-wrapper" style="height: 500px;">
@@ -17,15 +17,13 @@
 <script>
 	import player from 'player';
 	import 'playerCss';
+	import * as api from "../../api";
 	import $ from 'jquery';
 	import { mapGetters, mapActions, mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
-				list:[
-					{name:'摄像头1',url:'https://media.w3.org/2010/05/sintel/trailer.mp4'},
-					{name:'摄像头2',url:'https://upload.wikimedia.org/wikipedia/commons/2/22/Volcano_Lava_Sample.webm'},
-				]
+				list:[]
 			};
 		},
 		mounted() {
@@ -33,10 +31,14 @@
 		},
 		methods: {
 			init() {
+				this.$http.get(api.DEVICE_GET).then(res => {
+					this.list= res.data.data;
+				});
 				var mediaElements = document.querySelectorAll('video'),
 					total = mediaElements.length;
 				for(let i = 0; i < total; i++) {
 					new MediaElementPlayer(mediaElements[i], {
+						pluginPath: '../lib/',
 						stretching: 'fill',
 						success: function(media) {
 							$('.media-wrapper').height("500px");
@@ -51,7 +53,7 @@
 			play(item){
 				var media = document.querySelector('.mejs__container').id,
 					player = mejs.players[media];
-				player.setSrc(item.url.replace('&amp;', '&'));
+				player.setSrc(item.publish_addr.replace('&amp;', '&'));
 				player.load();
 				player.play();
 			}

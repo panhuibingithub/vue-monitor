@@ -1,9 +1,17 @@
-export const CONTEXT = '';
+export const CONTEXT = 'http://www.panhuibin.com/vue-monitor/php';
+//export const CONTEXT = 'http://localhost';
 //export const CONTEXT = './vue-monitor';
 
 export const LOGIN = CONTEXT + '/login';
 export const LOGOUT = CONTEXT + '/logout';
 export const CHANGE_PWD = CONTEXT + '/changePwd';
+
+export const DEVICE_GET = CONTEXT +'/device.php';
+export const DEVICE_ADD = CONTEXT +'/device_add.php';
+export const DEVICE_UPDATE = CONTEXT +'/device_update.php';
+export const DEVICE_DELETE = CONTEXT +'/device_delete.php';
+
+
 
 export const SYS_MENU_GET = CONTEXT + '/sys/menu/get';
 export const SYS_MENU_UPDATE = CONTEXT + '/sys/menu/update';
@@ -45,5 +53,5 @@ export const UPLOAD_FORM_FILE_TEMP = CONTEXT + '/upload/formFile';
 export const UPLOAD_FORM_FILE_BATCH = CONTEXT + '/upload/batch';
 
 export const MSG_TOP_TEN = CONTEXT + '/msg/topTen';
-export const TEST_DATA = CONTEXT + '/static/data/data.json';
+export const TEST_DATA = CONTEXT + '/data.json';
 
