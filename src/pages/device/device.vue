@@ -20,9 +20,11 @@
 				</el-table-column>
 				<el-table-column prop="device_mac" label="设备mac">
 				</el-table-column>
-				<el-table-column prop="device_pwd" label="设备密码">
+				<el-table-column prop="device_ip" label="设备ip">
 				</el-table-column>
-				<el-table-column prop="device_type" label="设备类型">
+				<el-table-column prop="device_account" label="设备账户">
+				</el-table-column>
+				<el-table-column prop="device_pwd" label="设备密码">
 				</el-table-column>
 				<el-table-column prop="device_model" label="设备型号">
 				</el-table-column>
@@ -105,7 +107,9 @@
 					query: {
 						device_id: row.device_id,
 						device_name: row.device_name,
+						device_ip: row.device_ip,
 						device_mac: row.device_mac,
+						device_account: row.device_account,
 						device_pwd: row.device_pwd,
 						device_type: row.device_type,
 						device_model:row.device_model,
@@ -131,7 +135,6 @@
 			loadData() {
 				this.$http.get(api.DEVICE_GET).then(res => {
 					this.tableData.rows = res.data.data;
-					debugger;
 				});
 				
 			}

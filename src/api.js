@@ -8,7 +8,8 @@ export const CHANGE_PWD = CONTEXT + '/changePwd';
 
 export const DEVICE_GET = CONTEXT +'/device.php';
 export const DEVICE_ADD = CONTEXT +'/device_add.php';
-export const DEVICE_UPDATE = CONTEXT +'/device_update.php';
+//export const DEVICE_UPDATE = CONTEXT +'/device_update.php';
+export const DEVICE_UPDATE = CONTEXT +'/device_update_rtmp.php';
 export const DEVICE_DELETE = CONTEXT +'/device_delete.php';
 
 

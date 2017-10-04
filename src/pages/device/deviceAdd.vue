@@ -7,11 +7,14 @@
 			<el-form-item label="设备mac">
 				<el-input v-model="form.device_mac"></el-input>
 			</el-form-item>
+			<el-form-item label="设备ip">
+				<el-input v-model="form.device_ip"></el-input>
+			</el-form-item>
+			<el-form-item label="设备账户">
+				<el-input v-model="form.device_account"></el-input>
+			</el-form-item>
 			<el-form-item label="设备密码">
 				<el-input v-model="form.device_pwd"></el-input>
-			</el-form-item>
-			<el-form-item label="设备类型">
-				<el-input v-model="form.device_type"></el-input>
 			</el-form-item>
 			<el-form-item label="设备型号">
 				<el-input v-model="form.device_model"></el-input>
@@ -40,12 +43,6 @@
 		data() {
 			return {
 				form: {
-					device_id: null,
-					device_type: '',
-					device_name:'',
-					device_model: "",
-					device_state: "",
-					publish_addr: ""
 				}
 			}
 		},
@@ -54,7 +51,6 @@
 		},
 		methods: {
 			onSubmit() {
-				this.form.id = 'fdsaf';
 				this.$http.post(api.DEVICE_ADD, this.form).then(res => {
 					this.$confirm('添加成功, 是否返回列表?', '提示', {
 						confirmButtonText: '确定',
@@ -84,7 +80,9 @@
 					this.form = {
 						"device_id": this.$route.query.device_id,
 						"device_name": this.$route.query.device_name,
+						"device_ip": this.$route.query.device_ip,
 						"device_mac": this.$route.query.device_mac,
+						"device_account": this.$route.query.device_account,
 						"device_pwd": this.$route.query.device_pwd,
 						"device_type": this.$route.query.device_type,
 						"device_model": this.$route.query.device_model,
