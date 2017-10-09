@@ -22,6 +22,7 @@
     data(){
       return {
         form: {
+        	  user_id:'',
           oldPwd: '',
           newPwd: '',
           newPwd2: ''
@@ -30,13 +31,22 @@
     },
     methods: {
       onSubmit(){
+      	let userInfo =JSON.parse(window.sessionStorage.getItem("userInfo"));
         if (this.newPwd !== this.newPwd2) {
           this.$message({type: "error", message: "两次输入密码不一致"});
           return;
         }
-        this.$http.post(api.CHANGE_PWD, this.form)
+        this.form.user_id = userInfo.user_id;
+        this.$http.post(api.SYS_USER_CHANGE_PWD, this.form)
           .then(res => {
-          this.$message("修改成功");
+          	if(res.data.code==0){
+          		this.$message("修改成功");
+          		this.$router.push({
+					path: '/index'
+				});
+          	}else{
+          		this.$message({type: "error", message: res.data.message});
+          	}
       })
       }
     }

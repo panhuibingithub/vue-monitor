@@ -32,7 +32,7 @@ const store = new Vuex.Store({
     device: {
       isMobile: false
     },
-    userInfo:{name:'佚名'}
+    userInfo:{user_name:'---'}
   },
   mutations: {
     //只能同步的函数

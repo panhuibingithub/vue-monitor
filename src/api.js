@@ -2,16 +2,20 @@ export const CONTEXT = 'http://www.panhuibin.com/vue-monitor/php';
 //export const CONTEXT = 'http://localhost';
 //export const CONTEXT = './vue-monitor';
 
-export const LOGIN = CONTEXT + '/login';
-export const LOGOUT = CONTEXT + '/logout';
-export const CHANGE_PWD = CONTEXT + '/changePwd';
+export const DEVICE_GET = CONTEXT +'/device/device.php';
+export const DEVICE_ADD = CONTEXT +'/device/device_add.php';
+export const DEVICE_UPDATE = CONTEXT +'/device/device_update.php';
+export const DEVICE_UPDATE_RTMP = CONTEXT +'device/device_update_rtmp.php';
+export const DEVICE_DELETE = CONTEXT +'/device/device_delete.php';
 
-export const DEVICE_GET = CONTEXT +'/device.php';
-export const DEVICE_ADD = CONTEXT +'/device_add.php';
-//export const DEVICE_UPDATE = CONTEXT +'/device_update.php';
-export const DEVICE_UPDATE = CONTEXT +'/device_update_rtmp.php';
-export const DEVICE_DELETE = CONTEXT +'/device_delete.php';
-
+//用户
+export const LOGIN = CONTEXT + '/sys/user/login.php';
+export const LOGOUT = CONTEXT + '/sys/user/logout.php';
+export const SYS_USER_ADD = CONTEXT + '/sys/user/add.php';
+export const SYS_USER_UPDATE = CONTEXT + '/sys/user/update.php';
+export const SYS_USER_DELETE = CONTEXT + '/sys/user/delete.php';
+export const SYS_USER_PAGE = CONTEXT + '/sys/user/page.php';
+export const SYS_USER_CHANGE_PWD = CONTEXT + '/sys/user/update_password.php';
 
 
 export const SYS_MENU_GET = CONTEXT + '/sys/menu/get';
@@ -38,13 +42,9 @@ export const SYS_RESOURCE_DELETE = CONTEXT + '/sys/resource/delete';
 export const SYS_RESOURCE_ADD = CONTEXT + '/sys/resource/add';
 export const SYS_RESOURCE_PAGE = CONTEXT + '/sys/resource/page';
 export const SYS_RESOURCE_LIST = CONTEXT + '/sys/resource/list';
-export const SYS_RESOURCE_LIST2 = CONTEXT + '/sys/resource/list2';
+export const SYS_RESOURCE_LISTQ = CONTEXT + '/sys/resource/list2';
 
-export const SYS_USER_GET = CONTEXT + '/sys/user/get';
-export const SYS_USER_ADD = CONTEXT + '/sys/user/add';
-export const SYS_USER_UPDATE = CONTEXT + '/sys/user/update';
-export const SYS_USER_DELETE = CONTEXT + '/sys/user/delete';
-export const SYS_USER_PAGE = CONTEXT + '/sys/user/page';
+
 export const SYS_USER_ROLE = CONTEXT + '/sys/user/roleIds';
 export const SYS_SET_USER_ROLE = CONTEXT + '/sys/user/setRoles';
 

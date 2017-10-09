@@ -32,7 +32,7 @@
 				</el-table-column>
 				<el-table-column prop="publish_addr" label="视频发布地址">
 				</el-table-column>
-				<el-table-column label="操作" width="285">
+				<el-table-column label="操作" width="160">
 					<template scope="scope">
 						<el-button size="small" type="default" icon="edit" @click="handleEdit(scope.$index, scope.row)">编辑
 						</el-button>
@@ -91,7 +91,6 @@
 			handleRoleConfig(index, row) {
 				this.currentRow = row;
 				this.dialogVisible = true;
-
 			},
 			handleSizeChange(val) {
 				this.tableData.pagination.pageSize = val;
@@ -104,18 +103,7 @@
 			handleEdit(index, row) {
 				this.$router.push({
 					path: 'deviceAdd',
-					query: {
-						device_id: row.device_id,
-						device_name: row.device_name,
-						device_ip: row.device_ip,
-						device_mac: row.device_mac,
-						device_account: row.device_account,
-						device_pwd: row.device_pwd,
-						device_type: row.device_type,
-						device_model:row.device_model,
-						device_state:row.device_state,
-						publish_addr:row.publish_addr
-					}
+					query: row
 				})
 			},
 			handleDelete(index, row) {

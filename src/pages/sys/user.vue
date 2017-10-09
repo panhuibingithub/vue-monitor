@@ -25,29 +25,21 @@
         v-loading="listLoading"
         @selection-change="handleSelectionChange">
         <el-table-column
-          prop="id"
-          type="selection"
-          width="45">
+          prop="user_id"
+          label="用户编号">
+        </el-table-column>
         </el-table-column>
         <el-table-column
-          prop="name"
-          label="名称">
-        </el-table-column>
-        <el-table-column
-          prop="loginName"
+          prop="user_name"
           label="登录用户名">
         </el-table-column>
         <el-table-column
-          prop="photo"
-          label="照片">
+          prop="telephone"
+          label="电话号码">
         </el-table-column>
         <el-table-column
-          prop="email"
-          label="邮箱">
-        </el-table-column>
-        <el-table-column
-          prop="status"
-          label="状态">
+          prop="user_role"
+          label="用户角色">
         </el-table-column>
         <el-table-column label="操作" width="285">
           <template scope="scope">
@@ -57,12 +49,12 @@
               icon="edit"
               @click="handleEdit(scope.$index, scope.row)">编辑
             </el-button>
-            <el-button
+            <!--<el-button
               size="small"
               type="info"
               icon="setting"
               @click="handleRoleConfig(scope.$index, scope.row)">配置角色
-            </el-button>
+            </el-button>-->
             <el-button
               size="small"
               type="danger"
@@ -113,7 +105,6 @@
 <script>
   import panel from "../../components/panel.vue"
   import * as api from "../../api"
-  import testData from "../../../static/data/data.json"
 
   export default {
     components: {
@@ -181,33 +172,30 @@
         this.loadData();
       },
       handleEdit(index, row){
-        this.$router.push({path: 'userAdd', query: {id: row.id}})
+        this.$router.push({path: 'userAdd', query: row})
       },
       handleDelete(index, row){
-        this.$http.get(api.SYS_USER_DELETE + "?userIds=" + row.id).then(res => {
-          this.loadData();
-        });
-      },
-      loadData(){
-        var d = {"offset":0,"limit":2147483647,"total":1,"size":10,"pages":1,"current":1,"searchCount":true,"optimizeCount":false,"orderByField":null,"records":[
-            {"id":1,"delFlag":0,"companyId":1,"officeId":2,"loginName":"admin","password":"",
-              "no":"0001","name":"系统管理员","email":"lanux@foxmail.com","phone":"731","mobile":"13769999998",
-              "userType":"1","photo":null,"loginIp":"127.0.0.1","loginDate":1453188598000,"loginFlag":"1",
-              "remarks":"最高管理员","status":1,"token":null}],"condition":{},"asc":true,"offsetCurrent":0};
-        this.tableData.rows = d.records;
-//      this.tableData.pagination.total = d.total;
-        //        this.$http.get(api.SYS_USER_PAGE + "?key=" + this.searchKey + "&pageSize=" + this.tableData.pagination.pageSize + "&pageNo=" + this.tableData.pagination.pageNo)
-//          .then(res => {
-//            this.tableData.rows = res.data.records;
-//            this.tableData.pagination.total = res.data.total;
-//          });
-      }
-    },
-    created(){
-      this.loadData();
-    }
-  }
-</script>
+        this.$http.post(api.SYS_USER_DELETE,{'user_id':row.user_id}).then(res => {
+		 	this.loadData();
+		});
+	 },
+	 loadData() {
+//	 	this.tableData.pagination.total = d.total;
+	 	this.$http.post(api.SYS_USER_PAGE,{
+	 			'key':this.searchKey,
+	 			'pageSize':10,
+	 			'pageNo':1
+	 		})
+	 		.then(res => {
+	 			this.tableData.rows = res.data.data;
+	 			this.tableData.pagination.total = 0;
+	 		});
+	 	}
+	 },
+	 created() {
+	 	this.loadData();
+	 }
+ }</script>
 <style>
   .el-pagination {
     float: right;
