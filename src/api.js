@@ -1,6 +1,5 @@
 export const CONTEXT = 'http://www.panhuibin.com/vue-monitor/php';
 //export const CONTEXT = 'http://localhost';
-//export const CONTEXT = './vue-monitor';
 
 export const DEVICE_GET = CONTEXT +'/device/device.php';
 export const DEVICE_ADD = CONTEXT +'/device/device_add.php';
