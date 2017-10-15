@@ -46,14 +46,15 @@ var v = new Vue({
 							this.msgContainer.html("未扫描到人脸");
 						}else if(obj.msg.result_num==1){
 							var location = obj.msg.result[0].location;
-							this.drawCtx.clearRect(0,0,this.drawCtx.width,this.drawCtx.height);
+							this.drawCtx.clearRect(0,0,this.drawCanvas.width,this.drawCanvas.height);
     							this.drawCtx.save();
 							this.drawCtx.beginPath();
-							this.drawCtx.clearRect(location.left,location.top,location.width,location.height);
 							this.drawCtx.rect(location.left,location.top,location.width,location.height);
 							this.drawCtx.stroke();
 							this.drawCtx.closePath();
-							this.msgContainer.html("显示人脸位置"+location.left+'-'+(location.top)+'-'+location.width+'-'+location.height);
+							setTimeout(function(){
+								_this.drawCtx.clearRect(0,0,_this.drawCanvas.width,_this.drawCanvas.height);
+							},4000)
 						}else if(obj.msg.result_num>1){
 							this.msgContainer.html("存在"+obj.msg.result_num+"张人脸,请重试");
 						}
@@ -77,8 +78,7 @@ var v = new Vue({
 			}
 		},
 		action:function(action){
-			debugger;
-			this.ctx.drawImage(this.video[0], 0, 0, 375, 280);
+			this.ctx.drawImage(this.video[0], 0, 0, this.canvas.width, this.canvas.height);
 			var imageBase64 = this.canvas.toDataURL("image/jpeg", 1).split(",")[1];
 			this.socket.emit("message", {action:action,user:this.user,imageBase64:imageBase64});
 		}
