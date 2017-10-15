@@ -1,11 +1,13 @@
-export const CONTEXT = 'http://www.panhuibin.com/vue-monitor/php';
-//export const CONTEXT = 'http://localhost';
+//export const CONTEXT = 'http://www.panhuibin.com/vue-monitor/php';
+export const CONTEXT = 'http://localhost';
 
 export const DEVICE_GET = CONTEXT +'/device/device.php';
 export const DEVICE_ADD = CONTEXT +'/device/device_add.php';
 export const DEVICE_UPDATE = CONTEXT +'/device/device_update.php';
 export const DEVICE_UPDATE_RTMP = CONTEXT +'device/device_update_rtmp.php';
 export const DEVICE_DELETE = CONTEXT +'/device/device_delete.php';
+
+export const MSG_ADD = CONTEXT +'/msg/add.php';
 
 //用户
 export const LOGIN = CONTEXT + '/sys/user/login.php';

@@ -2,7 +2,7 @@
  header("Content-Type: text/html;charset=utf-8"); 
  $servername="qdm217407669.my3w.com";
  $username= "qdm217407669";
- $password= "apple9787123123";
+ $password= "Apple9787123123";
  $dbname="qdm217407669_db";
  $conn = mysql_connect($servername,$username,$password);
  if(!$conn){

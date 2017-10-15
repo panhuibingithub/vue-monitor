@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
- *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree.
--->
 <html>
 
 	<head>
@@ -23,19 +16,21 @@
 
 		<title>Select audio and video sources</title>
 		<style>
-			*{
+
+		*{
 				margin: 0;
 				padding: 0;
 			}
 			div.select {
-				display: inline-block;
-				margin: 0 0 1em 0;
+				display: none;
 			}
 			
 			p.small {
 				font-size: 0.7em;
 			}
-			
+			#container{
+				position: relative;
+			}
 			label {
 				width: 12em;
 				display: inline-block;
@@ -43,8 +38,36 @@
 			#video{
 				width: 100%;
 			}
-			canvas{
+			#canvas1{
 				display: none;
+			}
+			#canvas2{
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 100;
+			}
+			#msg{
+				position: absolute;
+				top: 100px;
+				left: 0;
+				width: 100%;
+				color: #fff;
+				font-size: 16px;
+				text-align: center;
+			}
+			#btn1,#btn2,#btn3{
+				position: absolute;
+				width: 50px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				left: 10px;
+				bottom: 10px;
+				background: #DEA726;
+				border: solid 1px yellow;
+				color: #666;
+				z-index: 200;
 			}
 		</style>
 	</head>
@@ -56,13 +79,17 @@
 				<select id="videoSource"></select>
 			</div>
 			<video id="video" autoplay></video>
-			<canvas width="375" height="281"></canvas>
-			<div onclick="sendMsg()">发送</div>
+			<canvas id="canvas2" width="375" height="281"></canvas>
+			<canvas id="canvas1" width="375" height="281"></canvas>
+			<div id="btn1" style="left: 10px;" @click="action('addUser')">注册</div>
+			<div id="btn2" style="left: 60px;" @click="action('detect')">监测</div>
+			<div id="btn3" style="left: 110px;" @click="action('identifyUser')">识别</div>
 			<p id="msg"></p>
 		</div>
+		<script src="js/vue.min.js"></script>
+		<script src="js/zepto.min.js"></script>
 		<script src="js/socket.io.js"></script>
 		<script src="js/adapter.js"></script>
-		<script src="js/adapter_no_global.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 
