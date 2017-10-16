@@ -14,12 +14,13 @@
 
 		<base target="_blank">
 
-		<title>Select audio and video sources</title>
+		<title>人脸检测系统</title>
 		<style>
 
-		*{
+			*{
 				margin: 0;
 				padding: 0;
+				box-sizing: border-box;			
 			}
 			div.select {
 				display: none;
@@ -29,6 +30,8 @@
 				font-size: 0.7em;
 			}
 			#container{
+				max-width: 640px;
+				margin: 0 auto;
 				position: relative;
 			}
 			label {
@@ -69,11 +72,75 @@
 				color: #666;
 				z-index: 200;
 			}
+			.mask{
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,0.6);
+				z-index: 10000;
+			}
+			.pop-win{
+		        position: absolute;
+		        left: 50%;
+		        top: 20%;
+		        margin-left: -155px;
+		        width: 310px;
+		        min-height: 200px;
+		        overflow: auto;
+		        padding-bottom: 50px;
+		        background: #fff;
+		     }
+	        .pop-win .tit{
+	            width: 100%;
+	            height: 50px;
+	            line-height: 50px;
+	            font-size: 16px;
+	            color: rgba(29,29,29,38,1);
+	            opacity: 0.5;
+	            padding-left: 15px;
+	            border-bottom: solid 1px #dadada;
+	        }
+	        .pop-win .content{
+	            padding: 25px 15px;
+	            font-size: 16px;
+	            color: rgba(29,29,29,38,1);
+	            max-height: 300px;
+	            overflow: auto;
+	        }
+	        .pop-win .content input{
+	        		width: 100%;
+	        		height: 40px;
+	        		padding-left: 10px;
+	        		border: solid 1px #DDDDDD;
+	        }
+	        .know2{
+	        		border-left: solid 1px #dadada;
+	        		left: 50%;
+	        }
+	        .know1{
+	        		left: 0;
+	        }
+	        .pop-win .know1,.pop-win .know2{
+	            position: absolute;
+	            width: 50%;
+	            height: 50px;
+	            line-height: 50px;
+	            text-align: center;
+	            font-size: 16px;
+	            color: #FF4302;
+	            bottom: 0;
+	            border-top: solid 1px #dadada;
+	        }
+	        [v-cloak]{
+	        		display: none;
+	        }
 		</style>
 	</head>
 
 	<body>
-		<div id="container">
+		<div id="container" v-cloak>
 			<div class="select">
 				<label for="videoSource">Video source: </label>
 				<select id="videoSource"></select>
@@ -81,11 +148,22 @@
 			<video id="video" autoplay></video>
 			<canvas id="canvas2" width="375" height="281"></canvas>
 			<canvas id="canvas1" width="375" height="281"></canvas>
-			<div id="btn1" style="left: 10px;" @click="action('addUser')">注册</div>
+			<div id="btn1" style="left: 10px;" @click="register">注册</div>
 			<div id="btn2" style="left: 60px;" @click="action('detect')">监测</div>
 			<div id="btn3" style="left: 110px;" @click="action('identifyUser')">识别</div>
 			<p id="msg"></p>
+			<div class="mask" v-if="mask">
+				<div class="pop-win">
+					<h2 class="tit">提示信息</h2>
+					<p class="content">
+						<input placeholder="请输入注册的用户名信息" v-model = "userName" />
+					</p>
+					<div	 class="know1" @click="esc">取消</div>
+					<div	 class="know2" @click="action('addUser')">注册</div>
+				</div>
+			</div>
 		</div>
+		
 		<script src="js/vue.min.js"></script>
 		<script src="js/zepto.min.js"></script>
 		<script src="js/socket.io.js"></script>

@@ -92,11 +92,18 @@ io.on('connection', function(socket) {
 		switch (obj.action){
 			case "addUser":
 				console.log("addUser");
-				addUser(client, 'panhuibin', 'testName', ['group1'], obj.imageBase64,function(res){
-					console.log("addUser callback");
-					res.uid = 'panhuibin';
-					res.user_info = 'testName';
-					io.emit("message", {action:"addUser",msg:res});
+				var uid = "uid"+new Date().getTime();
+				identifyUser(client,"group1", obj.imageBase64,function(res){
+					if(res.result&&res.result[0]&&res.result[0].scores[0]<95){
+						console.log("dsda");
+						addUser(client, uid, obj.userName, ['group1'], obj.imageBase64,function(res2){
+							console.log("addUser callback");
+							res2.user_info = obj.userName;
+							io.emit("message", {action:"addUser",msg:res2});
+						});
+					}else{
+						io.emit("message", {action:"addUser",msg:{error_code:"-1",error_msg:"用户已注册，注册名为:"+res.result[0].user_info}})
+					}
 				});
 				break;
 			case "detect":

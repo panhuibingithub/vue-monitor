@@ -1,7 +1,10 @@
 var v = new Vue({
 	el:"#container",
 	data:function(){
-		return
+		return {
+			mask:false,
+			userName:''
+		}
 	},
 	mounted:function() {
 		this.init();
@@ -9,7 +12,7 @@ var v = new Vue({
 	methods: {
 		init:function(){
 			var _this = this;
-			this.socket = io.connect('ws://192.168.0.103:3002');
+			this.socket = io.connect('ws://111.230.131.60:3002');
 			this.video = $("#video");
 			this.canvas = $('#canvas1')[0];
 			this.drawCanvas = $('#canvas2')[0];
@@ -23,7 +26,6 @@ var v = new Vue({
 			this.socket.on("message", function(obj) {
 			    _this.dealMsg(obj);
 			});
-			this.user = 'user'+Math.random()*1000;
 		},
 		dealMsg:function(obj){
 			var _this = this;
@@ -32,7 +34,7 @@ var v = new Vue({
 					if(obj.msg.error_code){
 						this.msgContainer.html(obj.msg.error_msg);
 					}else{
-						this.msgContainer.html(obj.msg.uid+"-"+obj.msg.user_info+"-"+"用户注册成功");
+						this.msgContainer.html(obj.msg.user_info+"-"+"用户注册成功");
 					}
 					setTimeout(function(){
 						_this.msgContainer.html("");
@@ -67,7 +69,12 @@ var v = new Vue({
 					if(obj.msg.error_code){
 						this.msgContainer.html(obj.msg.error_msg);
 					}else{
-						this.msgContainer.html("用户识别为："+obj.msg.result[0].uid+"-"+obj.msg.result[0].user_info+"--匹配度为"+obj.msg.result[0].scores[0]);
+						if(obj.msg.result[0].scores[0]<95){
+							this.msgContainer.html("未识别到用户");
+							
+						}else{
+							this.msgContainer.html("用户识别为："+obj.msg.result[0].user_info+"--匹配度为"+obj.msg.result[0].scores[0]);
+						}
 					}
 					setTimeout(function(){
 						_this.msgContainer.html("");
@@ -77,10 +84,21 @@ var v = new Vue({
 					break;
 			}
 		},
+		register:function(){
+			this.mask = true;
+		},
+		esc:function(){
+			this.mask = false;	
+		},
 		action:function(action){
+			if(action=="addUser"&&(this.userName==null||this.userName=="")){
+				alert("注册的用户名不能为空！");
+				return;
+			}
+			this.mask = false;	
 			this.ctx.drawImage(this.video[0], 0, 0, this.canvas.width, this.canvas.height);
 			var imageBase64 = this.canvas.toDataURL("image/jpeg", 1).split(",")[1];
-			this.socket.emit("message", {action:action,user:this.user,imageBase64:imageBase64});
+			this.socket.emit("message", {action:action,userName:this.userName,imageBase64:imageBase64});
 		}
 	}
 })

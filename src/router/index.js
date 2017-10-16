@@ -11,12 +11,9 @@ import resetPwd from "../pages/resetPwd.vue";
 
 import device from "../pages/device/device.vue";
 import deviceAdd from "../pages/device/deviceAdd.vue";
-
-import client from "../pages/client/index.vue";
 // Routes
 const routes = [
 	{ path: '/login', component: login },
-	{ path: '/client', component: client },
 	{
 		path: '/test',
 		component: app,
